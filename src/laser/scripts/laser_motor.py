@@ -6,8 +6,10 @@ import rospy
 from std_msgs.msg import Int64
 
 GPIO.setup("P9_12", GPIO.OUT)
+GPIO.setup("P9_23", GPIO.OUT)
 GPIO.setup("P9_30", GPIO.IN)
 GPIO.setup("P9_27", GPIO.IN)
+GPIO.output("P9_23", GPIO.HIGH)
 global distance
 distance = 0
 
