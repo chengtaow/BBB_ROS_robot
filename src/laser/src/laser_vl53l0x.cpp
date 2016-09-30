@@ -31,7 +31,7 @@ void print_range_status(VL53L0X_RangingMeasurementData_t* pRangingMeasurementDat
     RangeStatus = pRangingMeasurementData->RangeStatus;
     VL53L0X_GetRangeStatusString(RangeStatus, buf);
     //printf("Range Status: %i : %s\n", RangeStatus, buf);
-    std::string trans(buf, VL53L0X_MAX_STRING_LENGTH);
+    std::string trans(buf, 11);
     laserdata.status = trans;
 }
 
@@ -215,7 +215,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "laser_vl53l0x");
     ros::NodeHandle n;
     ros::Publisher l_data_pub = n.advertise<laser::LaserData>("l_data", 30);
-    ros::Rate loop_rate(20);
+    ros::Rate loop_rate(25);
     int count = 0;
 
     //Begin the loop

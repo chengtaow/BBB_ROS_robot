@@ -27,9 +27,9 @@ GPIO.add_event_detect("P9_27", GPIO.BOTH, callback = encoder_go2)
 
 def send_encoder():
 	global distance
-	pub = rospy.Publisher('l_en_num', Int64, queue_size=10)
+	pub = rospy.Publisher('l_en_num', Int64, queue_size=20)
 	rospy.init_node('laser_motor', anonymous=True)
-	rate = rospy.Rate(20)
+	rate = rospy.Rate(100)
 	PWM.start("P9_16", 20, 50, 0)
 	GPIO.output("P9_12", GPIO.LOW)
 	while not rospy.is_shutdown():
