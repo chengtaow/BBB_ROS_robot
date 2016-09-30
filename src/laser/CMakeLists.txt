@@ -47,7 +47,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
     FILES
-    Encoder.msg
+    LaserData.msg
 #   Message1.msg
 #   Message2.msg
 )
@@ -115,7 +115,13 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
+link_directories(
+  lib/
+)
+
 include_directories(
+  include/${PROJECT_NAME}/Api/core/inc/ 
+  include/${PROJECT_NAME}/Api/platform/inc/
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -130,16 +136,17 @@ include_directories(
 # add_dependencies(lazer ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(lazer_node src/lazer_node.cpp)
+add_executable(laser_vl53l0x src/laser_vl53l0x.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(lazer_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(lazer_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(laser_vl53l0x
+    VL53L0X_Rasp
+    ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
